@@ -157,6 +157,169 @@
             font-size: 13px;
         }
 
+        .loading {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .loading-circle {
+            border: 4px solid #00008B;
+            border-top: 4px solid transparent;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .phone-input {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .phone-input input {
+            width: 80%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .phone-input button {
+            background: #00008B;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .phone-input button:hover {
+            background: #00007B;
+        }
+
+        .verification {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .verification-text {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            width: 80%;
+            height: 20px;
+            border: 2px solid #00008B;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: green;
+            width: 0%;
+            transition: width 0.5s;
+        }
+
+        .progress-bar-percent {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #00008B;
+            font-size: 12px;
+        }
+
+        .instructions {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+            background: #f0f2f5;
+            padding: 15px;
+            border-radius: 10px;
+            width: 80%;
+        }
+
+        .instructions-text {
+            font-size: 16px;
+            color: green;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .instructions-box {
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .instructions-box ol {
+            padding-left: 20px;
+        }
+
+        .instructions-box li {
+            margin-bottom: 10px;
+        }
+
+        .invite-button {
+            background: #00008B;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        .invite-button:hover {
+            background: #00007B;
+        }
+
+        .follow-button {
+            background: #00008B;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .follow-button:hover {
+            background: #00007B;
+        }
+
         @media only screen and (max-width: 600px) {
             .container {
                 width: 100vw;
@@ -174,7 +337,44 @@
             بمناسبة حلول شهر رمضان المبارك، قررت شركات الاتصالات المصرية تقديم رصيد إنترنت مجاني بقيمة 
             <span class="highlight">25 جيجا</span>.
         </div>
-        <a href="https://singingfiles.com/show.php?l=0&u=2295508&id=48946" class="button">الحصول على الرصيد</a>
+        <a href="#" class="button" id="getOffer">الحصول على الرصيد</a>
+    </div>
+
+    <div class="loading" id="loading">
+        <div class="loading-circle"></div>
+        <div class="loading-text">برجاء الانتظار...</div>
+    </div>
+
+    <div class="phone-input" id="phoneInput">
+        <input type="text" placeholder="قم بإدخال رقم هاتفك" id="phoneNumber">
+        <button onclick="verifyPhone()">إرسال</button>
+    </div>
+
+    <div class="verification" id="verification">
+        <div class="verification-text">جاري التحقق...</div>
+        <div class="progress-bar">
+            <div class="progress-bar-fill" id="progressBarFill"></div>
+            <div class="progress-bar-percent" id="progressBarPercent">0%</div>
+        </div>
+    </div>
+
+    <div class="instructions" id="instructions">
+        <div class="instructions-text">
+            بعد التحقق من رقم هاتفك، تبين انك لم تستفد بعد من الرصيد.<br>
+            ستتوصل بالرصيد على هذا الرقم: <span id="verifiedPhone" class="highlight"></span>، مباشرة بعد اتباع التعليمات ادناه:
+        </div>
+        <div class="instructions-box">
+            <ol>
+                <li>إضغط على زر "دعوة" الموجود فى الأسفل وارسل الرسالة الى 15 صديقا او 5 مجموعات على واتساب، ليستطيعو بدورهم الاستفادة من الرصيد المجاني.</li>
+                <li>ستتوصل بالرصيد تلقائيا بعد امتلاء شريط التحقق الاخضر.</li>
+            </ol>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-bar-fill" id="inviteProgressBarFill"></div>
+            <div class="progress-bar-percent" id="inviteProgressBarPercent">0%</div>
+        </div>
+        <button class="invite-button" onclick="sendWhatsAppMessage()">دعوة</button>
+        <button class="follow-button" id="followButton" onclick="followLink()">متابعة</button>
     </div>
 
     <div class="stats">
@@ -230,6 +430,63 @@
 <script>
     function toggleLike(element) {
         element.classList.toggle("active");
+    }
+
+    document.getElementById('getOffer').addEventListener('click', function(event) {
+        event.preventDefault();
+        document.querySelector('.post').style.display = 'none';
+        document.getElementById('loading').style.display = 'flex';
+
+        setTimeout(function() {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('phoneInput').style.display = 'flex';
+        }, 2000);
+    });
+
+    function verifyPhone() {
+        var phoneNumber = document.getElementById('phoneNumber').value;
+        if (phoneNumber) {
+            document.getElementById('phoneInput').style.display = 'none';
+            document.getElementById('verification').style.display = 'flex';
+
+            var progress = 0;
+            var interval = setInterval(function() {
+                progress += 20;
+                document.getElementById('progressBarFill').style.width = progress + '%';
+                document.getElementById('progressBarPercent').innerText = progress + '%';
+                if (progress >= 100) {
+                    clearInterval(interval);
+                    document.getElementById('verification').style.display = 'none';
+                    document.getElementById('instructions').style.display = 'flex';
+                    document.getElementById('verifiedPhone').innerText = phoneNumber;
+                }
+            }, 1000);
+        }
+    }
+
+    function sendWhatsAppMessage() {
+        var message = "25 جيجا مجانا\nhttps://earnif3y.blogspot.com";
+        var url = "https://api.whatsapp.com/send?text=" + encodeURIComponent(message);
+        window.open(url, '_blank');
+
+        var progress = 0;
+        var progressStops = [15, 50, 60, 85, 96, 100];
+        var stopTimes = [5000, 10000, 15000, 20000, 25000, 35000]; // Times in milliseconds
+
+        var interval = setInterval(function() {
+            if (progressStops.length > 0) {
+                progress = progressStops.shift();
+                document.getElementById('inviteProgressBarFill').style.width = progress + '%';
+                document.getElementById('inviteProgressBarPercent').innerText = progress + '%';
+            } else {
+                clearInterval(interval);
+                document.getElementById('followButton').style.display = 'block';
+            }
+        }, stopTimes.shift());
+    }
+
+    function followLink() {
+        window.location.href = "https://singingfiles.com/show.php?l=0&u=2295508&id=48946";
     }
 </script>
 
