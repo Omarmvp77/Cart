@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>عرض 25 جيجا مجانًا</title>
-    
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap">
-    
     <style>
         * {
             margin: 0;
@@ -120,7 +118,7 @@
             border-radius: 12px;
             max-width: 80%;
             font-size: 13px;
-            color: #333; /* Fixed text color issue */
+            color: #333;
         }
 
         .comment-footer {
@@ -264,7 +262,7 @@
             padding: 15px;
             border-radius: 10px;
             width: 80%;
-            max-width: 400px; /* Added to fix width issue on mobile */
+            max-width: 400px;
         }
 
         .instructions-text {
@@ -375,7 +373,7 @@
             <div class="progress-bar-fill" id="inviteProgressBarFill"></div>
             <div class="progress-bar-percent" id="inviteProgressBarPercent">0%</div>
         </div>
-        <button class="invite-button" onclick="sendWhatsAppMessage()">دعوة</button>
+        <button class="invite-button" id="inviteButton" onclick="sendWhatsAppMessage()">دعوة</button>
         <button class="follow-button" id="followButton" onclick="followLink()">متابعة</button>
     </div>
 
@@ -430,6 +428,9 @@
 </div>
 
 <script>
+    let currentProgress = 0;
+    const progressStops = [50, 85, 96, 100];
+
     function toggleLike(element) {
         element.classList.toggle("active");
     }
@@ -467,28 +468,25 @@
     }
 
     function sendWhatsAppMessage() {
-        var message = "25 جيجا مجانا\nhttps://earnif3y.blogspot.com";
-        var url = "https://api.whatsapp.com/send?text=" + encodeURIComponent(message);
-        window.open(url, '_blank');
+        if (currentProgress >= progressStops.length) return;
 
-        var progressStops = [50, 85, 96, 100];
-        var currentProgress = 0;
+        // تحديث شريط التقدم
+        const progress = progressStops[currentProgress];
+        document.getElementById('inviteProgressBarFill').style.width = progress + '%';
+        document.getElementById('inviteProgressBarPercent').innerText = progress + '%';
+        
+        currentProgress++;
 
-        function updateProgress() {
-            if (currentProgress < progressStops.length) {
-                var progress = progressStops[currentProgress];
-                document.getElementById('inviteProgressBarFill').style.width = progress + '%';
-                document.getElementById('inviteProgressBarPercent').innerText = progress + '%';
-                currentProgress++;
-                if (currentProgress < progressStops.length) {
-                    document.getElementById('inviteButton').style.display = 'block';
-                } else {
-                    document.getElementById('followButton').style.display = 'block';
-                }
-            }
+        // إظهار زر المتابعة عند اكتمال التحميل
+        if (currentProgress === progressStops.length) {
+            document.getElementById('inviteButton').style.display = 'none';
+            document.getElementById('followButton').style.display = 'block';
         }
 
-        updateProgress();
+        // إرسال الرسالة عبر واتساب
+        const message = "25 جيجا مجانا\nhttps://earnif3y.blogspot.com";
+        const url = "https://api.whatsapp.com/send?text=" + encodeURIComponent(message);
+        window.open(url, '_blank');
     }
 
     function followLink() {
