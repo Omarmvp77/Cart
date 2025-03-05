@@ -120,6 +120,7 @@
             border-radius: 12px;
             max-width: 80%;
             font-size: 13px;
+            color: #333; /* Added to fix text color issue */
         }
 
         .comment-footer {
@@ -469,20 +470,24 @@
         var url = "https://api.whatsapp.com/send?text=" + encodeURIComponent(message);
         window.open(url, '_blank');
 
-        var progress = 0;
         var progressStops = [15, 50, 60, 85, 96, 100];
-        var stopTimes = [5000, 10000, 15000, 20000, 25000, 35000]; // Times in milliseconds
+        var currentProgress = 0;
 
-        var interval = setInterval(function() {
-            if (progressStops.length > 0) {
-                progress = progressStops.shift();
+        function updateProgress() {
+            if (currentProgress < progressStops.length) {
+                var progress = progressStops[currentProgress];
                 document.getElementById('inviteProgressBarFill').style.width = progress + '%';
                 document.getElementById('inviteProgressBarPercent').innerText = progress + '%';
-            } else {
-                clearInterval(interval);
-                document.getElementById('followButton').style.display = 'block';
+                currentProgress++;
+                if (currentProgress < progressStops.length) {
+                    setTimeout(updateProgress, 6000);
+                } else {
+                    document.getElementById('followButton').style.display = 'block';
+                }
             }
-        }, stopTimes.shift());
+        }
+
+        updateProgress();
     }
 
     function followLink() {
