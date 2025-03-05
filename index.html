@@ -3,8 +3,26 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&amp;display=swap" />
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
-    body { background: #f0f2f5; display: flex; justify-content: center; padding: 20px; direction: ltr; }
-    .container { background: white; width: 100%; max-width: 500px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); padding: 15px; direction: rtl; }
+    
+    body { 
+        background: #f0f2f5; 
+        margin: 0; 
+        padding: 0; 
+        width: 100vw; 
+        height: 100vh; 
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+    }
+
+    .container { 
+        background: white; 
+        width: 100vw; 
+        height: 100vh; 
+        border-radius: 0; 
+        box-shadow: none; 
+        padding: 15px; 
+    }
 
     .post img { width: 100%; border-radius: 5px; margin-bottom: 10px; }
     .text { font-size: 16px; margin-bottom: 10px; }
@@ -12,26 +30,26 @@
     .button { display: block; width: 50%; background: #00008B; color: white; text-align: center; padding: 10px; border-radius: 5px; cursor: pointer; text-decoration: none; margin: 0 auto; }
     .button:hover { background: #00007B; }
 
-    .stats { display: flex; justify-content: space-between; padding: 10px 0; color: gray; border-bottom: 1px solid #ddd; direction: ltr; }
+    .stats { display: flex; justify-content: space-between; padding: 10px 0; color: gray; border-bottom: 1px solid #ddd; }
     
-    .actions { display: flex; justify-content: space-around; padding: 10px 0; border-bottom: 1px solid #ddd; cursor: pointer; direction: ltr; }
+    .actions { display: flex; justify-content: space-around; padding: 10px 0; border-bottom: 1px solid #ddd; cursor: pointer; }
     .actions div { display: flex; align-items: center; gap: 5px; color: gray; }
     .like.active { color: #1877f2; }
 
     .comments { margin-top: 10px; }
-    .comment { display: flex; flex-direction: row; margin-bottom: 10px; direction: ltr; }
+    .comment { display: flex; flex-direction: row; margin-bottom: 10px; }
     .comment img { width: 40px; height: 40px; border-radius: 50%; margin-right: 10px; }
-    .comment-box { background: #f0f2f5; padding: 10px; border-radius: 12px; max-width: 80%; text-align: left; }
+    .comment-box { background: #f0f2f5; padding: 10px; border-radius: 12px; max-width: 80%; }
     .comment-footer { display: flex; gap: 15px; color: gray; font-size: 12px; margin-top: 5px; cursor: pointer; }
     .comment-footer span:hover { text-decoration: underline; color: #1877f2; }
 
     .reply { margin-left: 50px; }
 
     .add-comment { display: flex; margin-top: 10px; padding: 10px; border-top: 1px solid #ddd; }
-    .add-comment input { width: 100%; padding: 10px; border: none; border-radius: 20px; background: #f0f2f5; text-align: left; }
+    .add-comment input { width: 100%; padding: 10px; border: none; border-radius: 20px; background: #f0f2f5; }
 
     @media only screen and (max-width: 600px) {
-        .container { width: 100%; }
+        .container { width: 100vw; height: 100vh; }
     }
 </style>
 
@@ -94,7 +112,7 @@
     </div>
 
     <div class="add-comment">
-        <input type="text" placeholder="Write a comment..." style="text-align: left;" />
+        <input type="text" placeholder="Write a comment..." />
     </div>
 </div>
 
