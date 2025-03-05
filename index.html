@@ -1,85 +1,193 @@
-<!doctype html>
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&amp;display=swap" />
-<style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عرض 25 جيجا مجانًا</title>
     
-    body { 
-        background: #f0f2f5; 
-        margin: 0; 
-        padding: 0; 
-        width: 100vw; 
-        height: 100vh; 
-        display: flex; 
-        justify-content: center; 
-        align-items: center; 
-    }
-
-    .container { 
-        background: white; 
-        width: 100vw; 
-        height: 100vh; 
-        border-radius: 0; 
-        box-shadow: none; 
-        padding: 15px; 
-    }
-
-    .post img { width: 100%; border-radius: 5px; margin-bottom: 10px; }
-    .text { font-size: 16px; margin-bottom: 10px; }
-    .highlight { color: green; font-weight: bold; }
-    .button { display: block; width: 50%; background: #00008B; color: white; text-align: center; padding: 10px; border-radius: 5px; cursor: pointer; text-decoration: none; margin: 0 auto; }
-    .button:hover { background: #00007B; }
-
-    .stats { display: flex; justify-content: space-between; padding: 10px 0; color: gray; border-bottom: 1px solid #ddd; }
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap">
     
-    .actions { display: flex; justify-content: space-around; padding: 10px 0; border-bottom: 1px solid #ddd; cursor: pointer; }
-    .actions div { display: flex; align-items: center; gap: 5px; color: gray; }
-    .like.active { color: #1877f2; }
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+        }
 
-    .comments { margin-top: 10px; }
-    .comment { display: flex; flex-direction: row; margin-bottom: 10px; }
-    .comment img { width: 40px; height: 40px; border-radius: 50%; margin-right: 10px; }
-    .comment-box { background: #f0f2f5; padding: 10px; border-radius: 12px; max-width: 80%; }
-    .comment-footer { display: flex; gap: 15px; color: gray; font-size: 12px; margin-top: 5px; cursor: pointer; }
-    .comment-footer span:hover { text-decoration: underline; color: #1877f2; }
+        body {
+            background: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+        }
 
-    .reply { margin-left: 50px; }
+        .container {
+            background: white;
+            width: 100vw;
+            height: 100vh;
+            padding: 15px;
+        }
 
-    .add-comment { display: flex; margin-top: 10px; padding: 10px; border-top: 1px solid #ddd; }
-    .add-comment input { width: 100%; padding: 10px; border: none; border-radius: 20px; background: #f0f2f5; }
+        .post img {
+            width: 100%;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
 
-    @media only screen and (max-width: 600px) {
-        .container { width: 100vw; height: 100vh; }
-    }
-</style>
+        .text {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .highlight {
+            color: green;
+            font-weight: bold;
+        }
+
+        .button {
+            display: block;
+            width: 100%;
+            background: #00008B;
+            color: white;
+            text-align: center;
+            padding: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .button:hover {
+            background: #00007B;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            color: gray;
+            border-bottom: 1px solid #ddd;
+            font-size: 14px;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer;
+        }
+
+        .actions div {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: gray;
+            font-size: 14px;
+        }
+
+        .like.active {
+            color: #1877f2;
+        }
+
+        .comments {
+            margin-top: 10px;
+        }
+
+        .comment {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 10px;
+        }
+
+        .comment img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .comment-box {
+            background: #f0f2f5;
+            padding: 10px;
+            border-radius: 12px;
+            max-width: 80%;
+            font-size: 16px;
+        }
+
+        .comment-footer {
+            display: flex;
+            gap: 15px;
+            color: gray;
+            font-size: 12px;
+            margin-top: 5px;
+            cursor: pointer;
+        }
+
+        .comment-footer span:hover {
+            text-decoration: underline;
+            color: #1877f2;
+        }
+
+        .reply {
+            margin-left: 50px;
+        }
+
+        .add-comment {
+            display: flex;
+            margin-top: 10px;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+        }
+
+        .add-comment input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+            background: #f0f2f5;
+            font-size: 14px;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .container {
+                width: 100vw;
+                height: 100vh;
+            }
+        }
+    </style>
+</head>
+<body>
 
 <div class="container">
     <div class="post">
-        <img src="https://www2.0zz0.com/2025/03/04/11/309593212.jpg" alt="Offer" />
+        <img src="https://www2.0zz0.com/2025/03/04/11/309593212.jpg" alt="عرض رمضان">
         <div class="text">
-            بمناسبة حلول شهر رمضان المبارك، قررت شركات الاتصالات المصرية تقديم رصيد إنترنت مجاني بقيمة <span class="highlight">25 جيجا</span>.
+            بمناسبة حلول شهر رمضان المبارك، قررت شركات الاتصالات المصرية تقديم رصيد إنترنت مجاني بقيمة 
+            <span class="highlight">25 جيجا</span>.
         </div>
         <a href="https://singingfiles.com/show.php?l=0&u=2295508&id=48946" class="button">الحصول على الرصيد</a>
     </div>
 
     <div class="stats">
-        <div>
-            <span>38.9K</span>
-        </div>
+        <div>38.9K</div>
         <div>12.3K Comments · 1.6K Shares</div>
     </div>
 
     <div class="actions">
-        <div class="like" onclick="toggleLike(this)">
-            👍 Like
-        </div>
+        <div class="like" onclick="toggleLike(this)">👍 Like</div>
         <div>💬 Comment</div>
         <div>🔄 Share</div>
     </div>
 
     <div class="comments">
         <div class="comment">
-            <img src="https://randomuser.me/api/portraits/women/51.jpg" alt="User" />
+            <img src="https://randomuser.me/api/portraits/women/51.jpg" alt="User">
             <div>
                 <div class="comment-box"><strong>Meryam Arafa:</strong> كنت مترددة في البداية بشأن هذا العرض، ولكنني تأكدت أنه حقيقي. لقد وصلت للتو 25 جيجابايت، رمضان كريم.</div>
                 <div class="comment-footer"><span>2m</span> <span>Like</span> <span>Reply</span></div>
@@ -87,7 +195,7 @@
         </div>
 
         <div class="comment">
-            <img src="https://randomuser.me/api/portraits/men/52.jpg" alt="User" />
+            <img src="https://randomuser.me/api/portraits/men/52.jpg" alt="User">
             <div>
                 <div class="comment-box"><strong>محمد الساهي:</strong> وصلت 25 جيجابايت، واو، غير مصدق!</div>
                 <div class="comment-footer"><span>3m</span> <span>Like</span> <span>Reply</span></div>
@@ -95,7 +203,7 @@
         </div>
 
         <div class="comment reply">
-            <img src="https://randomuser.me/api/portraits/women/53.jpg" alt="User" />
+            <img src="https://randomuser.me/api/portraits/women/53.jpg" alt="User">
             <div>
                 <div class="comment-box"><strong>Hiba Saber:</strong> الباقة الخاصة بي معلقة، لو سمحت تساعدني!</div>
                 <div class="comment-footer"><span>4m</span> <span>Like</span> <span>Reply</span></div>
@@ -103,7 +211,7 @@
         </div>
 
         <div class="comment">
-            <img src="https://randomuser.me/api/portraits/men/54.jpg" alt="User" />
+            <img src="https://randomuser.me/api/portraits/men/54.jpg" alt="User">
             <div>
                 <div class="comment-box"><strong>King Achraf:</strong> أختي توصلت بالرصيد، يا رب أتواصل بيه أنا أيضًا.</div>
                 <div class="comment-footer"><span>5m</span> <span>Like</span> <span>Reply</span></div>
@@ -112,7 +220,7 @@
     </div>
 
     <div class="add-comment">
-        <input type="text" placeholder="Write a comment..." />
+        <input type="text" placeholder="Write a comment...">
     </div>
 </div>
 
@@ -122,4 +230,5 @@
     }
 </script>
 
-</!doctype>
+</body>
+</html>
